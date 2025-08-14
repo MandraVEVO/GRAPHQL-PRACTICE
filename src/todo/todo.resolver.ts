@@ -4,7 +4,7 @@ import { TodoService } from './todo.service';
 import { CreateTodoInput } from './DTO/inputs/create-todo-inputs';
 import { UpdateTodoInput } from './DTO/inputs/update-todo-inputs';
 
-@Resolver()
+@Resolver(() => Todo) //se declara para que el resolver trabaje con todo lo que tiene que ver con el TODO
 export class TodoResolver {
 
     constructor(
@@ -39,8 +39,11 @@ export class TodoResolver {
         return this.todoService.update(updateTodoInput);
     }
 
-    removeTodo(id: string) {
-        return {};
-    }
+    @Mutation(() => Boolean, { name: 'removeTodo' })
+    removeTodo(
+        @Args('id', { type: () => Int }) id: number
+    ) {
+        return this.todoService.delete(id);
+    } 
 
 }

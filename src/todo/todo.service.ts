@@ -48,4 +48,10 @@ export class TodoService {
         });
         return todoToUpdate;
     }
+
+    delete(id:number){
+        const todo = this.findOne(id);
+        this.todos = this.todos.filter(todo => todo.id !== id); //retorna todoos los todos que el id es diferente
+        return true; //si se elimina correctamente
+    }
 }
