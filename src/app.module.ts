@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { HelloworldModule } from './helloworld/helloworld.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { TodoModule } from './todo/todo.module';
 
 
 @Module({
@@ -19,6 +20,7 @@ plugins: [
 ]
 }),
     HelloworldModule,
+    TodoModule,
   ],
   controllers: [],
   providers: [],

@@ -2,10 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
 type Query {
   """retorna hola mundo"""
   helloWorld: String!
 
   """retorna un numero aleatorio"""
   number: Float!
+
+  """retorna un numero aleatorio entre 0 y el numero pasado por parametro"""
+  getRandomFromZeroTo(to: Int): Int!
+  todos: [Todo!]!
+  todo(id: Int!): Todo!
 }
