@@ -16,6 +16,18 @@ export class TodoService {
 
     ];
 
+    get totaltodos(){
+        return this.todos.length;
+    }
+
+    get pendingTodos(){
+        return this.todos.filter(todo => todo.done === false).length;
+    }
+
+    get completedtodos(){
+        return this.todos.filter(todo => todo.done === true).length;
+    }
+
 
     findAll(statusArgs:StatusArgs): Todo[] {
         const {status} = statusArgs;

@@ -4,6 +4,7 @@ import { TodoService } from './todo.service';
 import { CreateTodoInput } from './DTO/inputs/create-todo-inputs';
 import { UpdateTodoInput } from './DTO/inputs/update-todo-inputs';
 import { StatusArgs } from './DTO/args/status.args';
+import { AggregationsType } from './types/agreggations.type';
 
 @Resolver(() => Todo) //se declara para que el resolver trabaje con todo lo que tiene que ver con el TODO
 export class TodoResolver {
@@ -48,5 +49,21 @@ export class TodoResolver {
     ) {
         return this.todoService.delete(id);
     } 
+
+    //Agregations
+    @Query(()=>Int,{name:'totalTodos'})
+    totalTodos(){
+        return this.todoService.totaltodos;
+    }
+
+    @Query(()=> AggregationsType)
+    aggregations(): AggregationsType{
+        return{
+            completed:this.todoService.completedtodos,
+            pending:this.todoService.pendingTodos,
+            total:this.todoService.totaltodos,
+            totalTodosCompleted: this.todoService.totaltodos
+        }
+    }
 
 }
