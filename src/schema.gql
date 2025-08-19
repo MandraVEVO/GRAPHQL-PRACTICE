@@ -17,7 +17,7 @@ type Query {
 
   """retorna un numero aleatorio entre 0 y el numero pasado por parametro"""
   getRandomFromZeroTo(to: Int): Int!
-  todos: [Todo!]!
+  todos(status: Boolean): [Todo!]!
   todo(id: Int!): Todo!
 }
 

@@ -4,6 +4,7 @@ import { Not } from 'typeorm';
 import { CreateTodoInput } from './DTO/inputs/create-todo-inputs';
 import { UpdateTodoInput } from './DTO/inputs/update-todo-inputs';
 import { todo } from 'node:test';
+import { StatusArgs } from './DTO/args/status.args';
 
 @Injectable()
 export class TodoService {
@@ -16,7 +17,11 @@ export class TodoService {
     ];
 
 
-    findAll(): Todo[] {
+    findAll(statusArgs:StatusArgs): Todo[] {
+        const {status} = statusArgs;
+        if (status !== undefined) {
+            return this.todos.filter(todo => todo.done === status);
+        }
         return this.todos;
     }
 
